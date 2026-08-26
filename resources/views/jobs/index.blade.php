@@ -8,13 +8,11 @@
 <body>
     <h1>Available Jobs</h1>
     <ul>
-        @if(!empty($jobs))
-            @foreach ($jobs as $job)
-                <li><a href="#">{{ $job['title'] }} </a></li>
-            @endforeach
-        @else
+        @forelse($jobs as $job)
+            <li>{{ $job }}</li>
+        @empty
             <li style="color: #a00;">No jobs available at the moment.</li>
-        @endif
+        @endforelse
         
     </ul>
 </body>
