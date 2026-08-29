@@ -1,6 +1,7 @@
-@extends('layout')
+<x-layout>
+    <x-slot name="title">Job Listings</x-slot>
 
-@section('content')
+    <h1>{{ $title ?? 'All Job Listings' }}</h1>
     <ul>
         @forelse($jobs as $job)
             <li>{{ $job }}</li>
@@ -9,4 +10,4 @@
         @endforelse
         
     </ul>
-@endsection
+</x-layout>

@@ -1,13 +1,8 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Create New Job</title>
-</head>
-<body>
-    <h1>Create New Job</h1>
+<x-layout>
+    <x-slot name="title">Create Job</x-slot>
+
+    <h1>Create a New Job</h1>
+
     <form action="/jobs" method="POST">
         @csrf
         <p>
@@ -24,5 +19,4 @@
         </p>
         <button type="submit">Create Job</button>
     </form>
-</body>
-</html>
+</x-layout>
