@@ -5,7 +5,7 @@
     'bgColor' => 'bg-yellow-500',
     'hoverClass' => 'hover:bg-yellow-600',
     'textClass' => 'text-black',
-    'block' => false,
+    'block' => false
 ])
 
 <a href="{{ $url }}"
