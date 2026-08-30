@@ -12,6 +12,7 @@
     <x-header />
     @if(request()->is('/'))
         <x-hero />
+        <x-top-banner />
     @endif
 
     <main class="container mx-auto px-4 py-8">
