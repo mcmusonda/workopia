@@ -5,13 +5,20 @@
 
     <form action="/jobs" method="POST">
         @csrf
-        <div>
+        <div class="my-5">
             <label for="title">Job Title:</label>
-            <input type="text" name="title" id="title" required placeholder="Enter job title">
+            <input type="text" name="title" id="title" placeholder="Enter job title" value="{{ old('title') }}">
+
+            @error('title')
+                <div class="text-red-500">{{ $message }}</div>
+            @enderror
         </div>
-        <div>
+        <div class="my-5">
             <label for="description">Job Description:</label>
-            <input type="text" name="description" id="description" required placeholder="Enter job description">
+            <input type="text" name="description" id="description" placeholder="Enter job description" value="{{ old('description') }}">
+            @error('description')
+                <div class="text-red-500">{{ $message }}</div>
+            @enderror
         </div>
         <button type="submit">Create Job</button>
     </form>
