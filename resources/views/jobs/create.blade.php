@@ -2,53 +2,49 @@
     <x-slot name="title">Create Job</x-slot>
 
     <div
-                class="bg-white mx-auto p-8 rounded-lg shadow-md w-full md:max-w-3xl"
-            >
+                class="bg-white mx-auto p-8 rounded-lg shadow-md w-full md:max-w-3xl">
                 <h2 class="text-4xl text-center font-bold mb-4">
                     Create Job Listing
                 </h2>
-                <form
-                    method="POST"
-                    action="/jobs"
-                    enctype="multipart/form-data"
-                >
+                <form method="POST" action="/jobs" enctype="multipart/form-data" >
+                    @csrf
                     <h2
-                        class="text-2xl font-bold mb-6 text-center text-gray-500"
-                    >
+                        class="text-2xl font-bold mb-6 text-center text-gray-500">
                         Job Info
                     </h2>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="title"
-                            >Job Title</label
-                        >
+                        <label class="block text-gray-700" for="title">Job Title</label>
                         <input
                             id="title"
                             type="text"
                             name="title"
-                            class="w-full px-4 py-2 border rounded focus:outline-none"
-                            placeholder="Software Engineer"
+                            class="w-full px-4 py-2 border rounded focus:outline-none @error('title') border-red-500 @enderror"
+                            placeholder="Software Engineer" value="{{ old('title') }}"
                         />
+                        @error('title')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="description"
-                            >Job Description</label
-                        >
+                        <label class="block text-gray-700" for="description">Job Description</label>
                         <textarea
                             cols="30"
                             rows="7"
                             id="description"
                             name="description"
-                            class="w-full px-4 py-2 border rounded focus:outline-none"
-                            placeholder="We are seeking a skilled and motivated Software Developer to join our growing development team..."
-                        ></textarea>
+                            class="w-full px-4 py-2 border rounded focus:outline-none @error('description') border-red-500 @enderror"
+                            placeholder="We are seeking a skilled and motivated Software Developer to join our growing development team...">
+                        {{ old('description') }}
+                        </textarea>
+                        @error('description')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="salary"
-                            >Annual Salary</label
-                        >
+                        <label class="block text-gray-700" for="salary">Annual Salary</label>
                         <input
                             id="salary"
                             type="number"
@@ -59,33 +55,26 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="requirements"
-                            >Requirements</label
-                        >
+                        <label class="block text-gray-700" for="requirements">Requirements</label>
                         <textarea
                             id="requirements"
                             name="requirements"
                             class="w-full px-4 py-2 border rounded focus:outline-none"
-                            placeholder="Bachelor's degree in Computer Science"
-                        ></textarea>
+                            placeholder="Bachelor's degree in Computer Science"></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="benefits"
-                            >Benefits</label
-                        >
+                        <label class="block text-gray-700" for="benefits">Benefits</label>
                         <textarea
                             id="benefits"
                             name="benefits"
                             class="w-full px-4 py-2 border rounded focus:outline-none"
-                            placeholder="Health insurance, 401k, paid time off"
-                        ></textarea>
+                            placeholder="Health insurance, 401k, paid time off"></textarea>
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-gray-700" for="tags"
-                            >Tags (comma-separated)</label
-                        >
+                            >Tags (comma-separated)</label>
                         <input
                             id="tags"
                             type="text"
@@ -97,43 +86,40 @@
 
                     <div class="mb-4">
                         <label class="block text-gray-700" for="job_type"
-                            >Job Type</label
-                        >
+                            >Job Type</label>
                         <select
                             id="job_type"
                             name="job_type"
-                            class="w-full px-4 py-2 border rounded focus:outline-none"
-                        >
-                            <option value="Full-Time" selected>
+                            class="w-full px-4 py-2 border rounded focus:outline-none @error('job_type') border-red-500 @enderror">
+                            <option value="Full-Time" {{ old('job_type') == 'Full-Time' ? 'selected': '' }}>
                                 Full-Time
                             </option>
-                            <option value="Part-Time">Part-Time</option>
-                            <option value="Contract">Contract</option>
-                            <option value="Temporary">Temporary</option>
-                            <option value="Internship">Internship</option>
-                            <option value="Volunteer">Volunteer</option>
-                            <option value="On-Call">On-Call</option>
+                            <option value="Part-Time" {{ old('job_type') == 'Part-Time' ? 'selected': '' }}>Part-Time</option>
+                            <option value="Contract" {{ old('job_type') == 'Contract' ? 'selected': '' }}>Contract</option>
+                            <option value="Temporary" {{ old('job_type') == 'Temporary' ? 'selected': '' }}>Temporary</option>
+                            <option value="Internship" {{ old('job_type') == 'Internship' ? 'selected': '' }}>Internship</option>
+                            <option value="Volunteer" {{ old('job_type') == 'Volunteer' ? 'selected': '' }}>Volunteer</option>
+                            <option value="On-Call" {{ old('job_type') == 'On-Call' ? 'selected': '' }}>On-Call</option>
                         </select>
+                        @error('job_type')  
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <div class="mb-4">
                         <label class="block text-gray-700" for="remote"
-                            >Remote</label
-                        >
+                            >Remote</label>
                         <select
                             id="remote"
                             name="remote"
-                            class="w-full px-4 py-2 border rounded focus:outline-none"
-                        >
+                            class="w-full px-4 py-2 border rounded focus:outline-none">
                             <option value="false">No</option>
                             <option value="true">Yes</option>
                         </select>
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="address"
-                            >Address</label
-                        >
+                        <label class="block text-gray-700" for="address">Address</label>
                         <input
                             id="address"
                             type="text"
@@ -144,9 +130,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="city"
-                            >City</label
-                        >
+                        <label class="block text-gray-700" for="city">City</label>
                         <input
                             id="city"
                             type="text"
@@ -157,9 +141,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="state"
-                            >State</label
-                        >
+                        <label class="block text-gray-700" for="state">State</label>
                         <input
                             id="state"
                             type="text"
@@ -171,8 +153,7 @@
 
                     <div class="mb-4">
                         <label class="block text-gray-700" for="zipcode"
-                            >ZIP Code</label
-                        >
+                            >ZIP Code</label>
                         <input
                             id="zipcode"
                             type="text"
@@ -183,15 +164,13 @@
                     </div>
 
                     <h2
-                        class="text-2xl font-bold mb-6 text-center text-gray-500"
-                    >
+                        class="text-2xl font-bold mb-6 text-center text-gray-500">
                         Company Info
                     </h2>
 
                     <div class="mb-4">
                         <label class="block text-gray-700" for="company_name"
-                            >Company Name</label
-                        >
+                            >Company Name</label>
                         <input
                             id="company_name"
                             type="text"
@@ -204,21 +183,16 @@
                     <div class="mb-4">
                         <label
                             class="block text-gray-700"
-                            for="company_description"
-                            >Company Description</label
-                        >
+                            for="company_description">Company Description</label>
                         <textarea
                             id="company_description"
                             name="company_description"
                             class="w-full px-4 py-2 border rounded focus:outline-none"
-                            placeholder="Company Description"
-                        ></textarea>
+                            placeholder="Company Description"></textarea>
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="company_website"
-                            >Company Website</label
-                        >
+                        <label class="block text-gray-700" for="company_website">Company Website</label>
                         <input
                             id="company_website"
                             type="text"
@@ -230,8 +204,7 @@
 
                     <div class="mb-4">
                         <label class="block text-gray-700" for="contact_phone"
-                            >Contact Phone</label
-                        >
+                            >Contact Phone</label>
                         <input
                             id="contact_phone"
                             type="text"
@@ -242,9 +215,7 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="contact_email"
-                            >Contact Email</label
-                        >
+                        <label class="block text-gray-700" for="contact_email">Contact Email</label>
                         <input
                             id="contact_email"
                             type="email"
@@ -255,21 +226,22 @@
                     </div>
 
                     <div class="mb-4">
-                        <label class="block text-gray-700" for="company_logo"
-                            >Company Logo</label
-                        >
+                        <label class="block text-gray-700" for="company_logo">Company Logo</label>
                         <input
                             id="company_logo"
                             type="file"
                             name="company_logo"
-                            class="w-full px-4 py-2 border rounded focus:outline-none"
+                            class="w-full px-4 py-2 border rounded focus:outline-none @error('company_logo') border-red-500 @enderror"
                         />
+
+                        @error('company_logo')
+                            <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
+                        @enderror
                     </div>
 
                     <button
                         type="submit"
-                        class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none"
-                    >
+                        class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 my-3 rounded focus:outline-none">
                         Save
                     </button>
                 </form>

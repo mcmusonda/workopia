@@ -5,8 +5,7 @@
             <div class="flex justify-between items-center">
                 <a
                     class="block p-4 text-blue-700"
-                    href="{{ route('jobs.index') }}"
-                >
+                    href="{{ route('jobs.index') }}">
                     <i class="fa fa-arrow-alt-circle-left"></i>
                     Back To Listings
                 </a>
@@ -14,14 +13,12 @@
                     <a
                         href="/edit"
                         class="px-4 py-2 bg-blue-500 hover:bg-blue-600 text-white rounded"
-                        >Edit</a
-                    >
+                        >Edit</a>
                     <!-- Delete Form -->
                     <form method="POST">
                         <button
                             type="submit"
-                            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded"
-                        >
+                            class="px-4 py-2 bg-red-500 hover:bg-red-600 text-white rounded">
                             Delete
                         </button>
                     </form>
@@ -59,16 +56,14 @@
             <h2 class="text-xl font-semibold mb-4">Job Details</h2>
             <div class="rounded-lg shadow-md bg-white p-4">
                 <h3
-                    class="text-lg font-semibold mb-2 text-blue-500"
-                >
+                    class="text-lg font-semibold mb-2 text-blue-500">
                     Job Requirements
                 </h3>
                 <p>
                     {{ $job->requirements }}
                 </p>
                 <h3
-                    class="text-lg font-semibold mt-4 mb-2 text-blue-500"
-                >
+                    class="text-lg font-semibold mt-4 mb-2 text-blue-500">
                     Benefits
                 </h3>
                 <p>
@@ -81,8 +76,7 @@
             </p>
             <a
                 href="mailto:{{ $job->contact_email }}"
-                class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium cursor-pointer text-indigo-700 bg-indigo-100 hover:bg-indigo-200"
-            >
+                class="block w-full text-center px-5 py-2.5 shadow-sm rounded border text-base font-medium cursor-pointer text-indigo-700 bg-indigo-100 hover:bg-indigo-200">
                 Apply Now
             </a>
         </div>
@@ -108,16 +102,12 @@
         <a
             href="{{ $job->company_website }}"
             target="_blank"
-            class="text-blue-500"
-            >Visit Website</a
-        >
+            class="text-blue-500">Visit Website</a>
 
         <a
             href=""
-            class="mt-10 bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"
-            ><i class="fas fa-bookmark mr-3"></i> Bookmark
-            Listing</a
-        >
+            class="mt-10 bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center"><i class="fas fa-bookmark mr-3"></i> Bookmark
+            Listing</a>
     </aside>
     </div>
 </x-layout>
