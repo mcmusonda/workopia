@@ -133,15 +133,19 @@ class JobController extends Controller
         // Submit to database
         $job->update($validatedData);
 
-        return redirect()->route('jobs.index')->with('success', 'Job uodated successfully.');
+        return redirect()->route('jobs.index')->with('success', 'Job lisiting updated successfully.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id): string
+    public function destroy(Job $job)
     {
-        //
-        return "Deleting job with ID: $id";
+        // If logo, then delete it
+        if($job->logo) {
+            Storage::delete('public/logos' . $job->company_logo);
+        }
+        $job->delete();
+        return redirect()->route('jobs.index')->with('success', 'Job lisiting deleted successfully.');
     }
 }
