@@ -33,7 +33,7 @@ class JobController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        dd($request->all());
+        // dd($request->all());
         
         $validatedData = $request->validate([
             'title' => ['required', 'string', 'max:255'],
