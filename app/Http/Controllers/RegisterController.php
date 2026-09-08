@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class RegisterController extends Controller
@@ -27,6 +28,8 @@ class RegisterController extends Controller
         // Create User
         $user = User::create($validatedData);
 
+        Auth::login($user);
+        
         return redirect()->route('login')->with('success', 'Your registration was successful.You can now login.');
     }
 }
