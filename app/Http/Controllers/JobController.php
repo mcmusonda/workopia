@@ -27,9 +27,6 @@ class JobController extends Controller
      */
     public function create()
     {
-        if(!Auth::check()) {
-            return redirect()->route('login');
-        }
         return view('jobs.create');
     }
 

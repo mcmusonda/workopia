@@ -16,7 +16,7 @@ class LogRequest
      */
     public function handle(Request $request, Closure $next): Response
     {
-        Log::info("{$request->method()} - {$request->fullUrl()}");
+        // Log::info("{$request->method()} - {$request->fullUrl()}");
         return $next($request);
     }
 }
