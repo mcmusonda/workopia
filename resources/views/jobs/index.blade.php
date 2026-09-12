@@ -9,4 +9,7 @@
                 <li style="color: #a00;">No jobs available at the moment.</li>
             @endforelse
     </div>
+
+    {{-- Pagination Links --}}
+    {{ $jobs->links() }}
 </x-layout>
