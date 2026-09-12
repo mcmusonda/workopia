@@ -1,4 +1,19 @@
 <x-layout>
+   <section class="flex flex-col md:flex-row gap-4">
+   {{-- Profile Info Form --}}
+      <div class="bg-white p-8 rounded-lg shadow-md w-full">
+         <h3 class="text-3xl text-center font-bold mb-4">Profile Info</h3>
+         <form action="{{ route('profile.update') }}" method="post" enctype="multipart/form-data">
+            @csrf
+            @method('PUT')
+
+            <x-inputs.text id="name" name="name" label="Name" value="{{ $user->name }}" />
+            <x-inputs.text id="email" name="email" label="Email" value="{{ $user->email }}" />
+            
+            <button type="submit" class="w-full bg-green-500 hover:bg-green-600 text-white px-4 py-2 border rounded focus:outline-none">Save</button>
+         </form>
+      </div>
+   {{-- Job Listings --}}
    <div class="bg-white p-8 rounded-lg shadow-md w-full">
       <h3 class="text-3xl text-center font-bold mb-4">My Job Listings</h3>
       @forelse($jobs as $job)
@@ -26,4 +41,6 @@
          <p class="text-gray-700">You have no job listings</p>
       @endforelse
    </div>
+   </section>
+   <x-bottom-banner />
 </x-layout>
