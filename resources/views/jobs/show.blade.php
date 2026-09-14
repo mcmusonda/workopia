@@ -1,4 +1,13 @@
 <x-layout>
+    <x-alert
+        type="success"
+        :message="session('success')"
+    />
+
+    <x-alert
+        type="error"
+        :message="session('error')"
+    />
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
     <section class="md:col-span-2">
         <div class="rounded-lg shadow-md bg-white p-3">
@@ -122,11 +131,18 @@
                 <i class="fas fa-info-circle mr-3"></i> You must be logged in to bookmark a job.
             </p>
         @else
-            <form action="{{ route('bookmarks.store', $job->id) }}" method="post" class="mt-10">
+            <form action="{{ auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists() ? route('bookmarks.store', $job->id) : route('bookmarks.destroy', $job->id) }}" method="post" class="mt-10">
                 @csrf
-                <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                @if(auth()->user()->bookmarkedJobs()->where('job_id', $job->id)->exists())
+                @method('DELETE')
+                    <button class="bg-red-500 hover:bg-red-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
+                        <i class="fas fa-bookmark mr-3"></i> Remove Bookmark
+                    </button>
+                @else
+                    <button class="bg-blue-500 hover:bg-blue-600 text-white font-bold w-full py-2 px-4 rounded-full flex items-center justify-center">
                     <i class="fas fa-bookmark mr-3"></i> Bookmark Listing
                 </button>
+                @endif
             </form>
         @endguest
         
