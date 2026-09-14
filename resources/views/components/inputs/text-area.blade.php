@@ -5,7 +5,7 @@
     'value' => '',
     'placeholder' => '',
     'rows' => '7',
-    'cols' => '60'
+    'cols' => '30'
 ])
 
 <div class="mb-4">

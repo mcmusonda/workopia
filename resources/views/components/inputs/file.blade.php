@@ -1,8 +1,8 @@
-@props([
+   @props([
     'id', 
     'name', 
     'required' => false, 
-    'label' => null,
+    'label' => null
     ])
 
 <div class="mb-4">
